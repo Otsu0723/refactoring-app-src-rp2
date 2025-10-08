@@ -11,6 +11,7 @@ import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import jp.co.sss.crud.util.Constant;
 import jp.co.sss.crud.util.ConstantSQL;
 
 /**
@@ -30,7 +31,7 @@ public class DBController {
 	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 */
-	public static void find() throws ClassNotFoundException, SQLException {
+	public static void findAll() throws ClassNotFoundException, SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -47,12 +48,12 @@ public class DBController {
 
 			//resultSetの結果Setがない場合はfalse
 			if (!resultSet.isBeforeFirst()) {
-				System.out.println("該当者はいませんでした");
+				System.out.println(Constant.FIND_RESULT_NONE);
 				return;
 			}
 
 			// レコードを出力
-			System.out.println("社員ID\t社員名\t性別\t生年月日\t部署名");
+			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
 				System.out.print(resultSet.getString("emp_id") + "\t");
 				System.out.print(resultSet.getString("emp_name") + "\t");
@@ -93,7 +94,7 @@ public class DBController {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void findB() throws ClassNotFoundException, SQLException, IOException {
+	public static void findEmpName() throws ClassNotFoundException, SQLException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// 検索ワード
@@ -120,11 +121,11 @@ public class DBController {
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 			if (!resultSet.isBeforeFirst()) {
-				System.out.println("該当者はいませんでした");
+				System.out.println(Constant.FIND_RESULT_NONE);
 				return;
 			}
 
-			System.out.println("社員ID\t社員名\t性別\t生年月日\t部署名");
+			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
 				System.out.print(resultSet.getString("emp_id"));
 				System.out.print("\t");
@@ -173,7 +174,7 @@ public class DBController {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void findC(String deptId) throws ClassNotFoundException, SQLException, IOException {
+	public static void findDeptNo(String deptId) throws ClassNotFoundException, SQLException, IOException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -197,11 +198,11 @@ public class DBController {
 			resultSet = preparedStatement.executeQuery();
 
 			if (!resultSet.isBeforeFirst()) {
-				System.out.println("該当者はいませんでした");
+				System.out.println(Constant.FIND_RESULT_NONE);
 				return;
 			}
 
-			System.out.println("社員ID\t社員名\t性別\t生年月日\t部署名");
+			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
 				System.out.print(resultSet.getString("emp_id"));
 				System.out.print("\t");
@@ -285,7 +286,7 @@ public class DBController {
 			preparedStatement.executeUpdate();
 
 			// 登録完了メッセージを出力
-			System.out.println("社員情報を登録しました");
+			System.out.println(Constant.INSERT_COMP);
 		} finally {
 			DBManager.close(preparedStatement);
 			DBManager.close(connection);
@@ -314,17 +315,17 @@ public class DBController {
 			// ステートメントの作成
 			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_UPDATE);
 
-			System.out.print("社員名：");
+			System.out.print(Constant.EMPNAME);
 			String emp_name = br.readLine();
 			// 性別を入力
-			System.out.print("性別(0:回答しない, 1:男性, 2:女性, 9:その他):");
+			System.out.print(Constant.INSERT_GENDER);
 			String gender = br.readLine();
 			// 誕生日を入力
-			System.out.print("生年月日(西暦年/月/日)：");
+			System.out.print(Constant.INSERT_BIRTHDAY);
 			String birthday = br.readLine();
 
 			// 部署IDを入力
-			System.out.print("部署ID(1：営業部、2：経理部、3：総務部)：");
+			System.out.print(Constant.INSERT_DEPTID);
 			String deptId = br.readLine();
 
 			// 入力値をバインド
@@ -372,7 +373,7 @@ public class DBController {
 			// SQL文の実行(失敗時は戻り値0)
 			preparedStatement.executeUpdate();
 
-			System.out.println("社員情報を削除しました");
+			System.out.println(Constant.DELETE_COMP);
 
 		} catch (Exception e) {
 			e.printStackTrace();
