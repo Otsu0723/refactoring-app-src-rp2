@@ -55,28 +55,28 @@ public class DBController {
 			// レコードを出力
 			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id") + "\t");
-				System.out.print(resultSet.getString("emp_name") + "\t");
+				System.out.print(resultSet.getString(Constant.DB_EMP_ID) + Constant.SPACE);
+				System.out.print(resultSet.getString(Constant.DB_EMP_NAME) + Constant.SPACE);
 
-				int gender = Integer.parseInt(resultSet.getString("gender"));
+				int gender = Integer.parseInt(resultSet.getString(Constant.DB_GENDER));
 				if (gender == 0) {
-					System.out.print("回答なし" + "\t");
+					System.out.print(Constant.GENDER_NO_ANSWER + Constant.SPACE);
 				} else if (gender == 1) {
-					System.out.print("男性" + "\t");
+					System.out.print(Constant.GENDER_MAN + Constant.SPACE);
 
 				} else if (gender == 2) {
-					System.out.print("女性" + "\t");
+					System.out.print(Constant.GENDER_WOMAN + Constant.SPACE);
 
 				} else if (gender == 9) {
-					System.out.print("その他" + "\t");
+					System.out.print(Constant.GENDER_OTHER + Constant.SPACE);
 
 				}
 
-				System.out.print(resultSet.getString("birthday") + "\t");
-				System.out.println(resultSet.getString("dept_name"));
+				System.out.print(resultSet.getString(Constant.DB_BIRTHDAY) + Constant.SPACE);
+				System.out.println(resultSet.getString(Constant.DB_DEPT_NAME));
 			}
 
-			System.out.println("");
+			System.out.println(Constant.NONE);
 		} finally {
 			// ResultSetをクローズ
 			DBManager.close(resultSet);
@@ -116,7 +116,7 @@ public class DBController {
 			preparedStatement = connection.prepareStatement(sql.toString());
 
 			// 検索条件となる値をバインド
-			preparedStatement.setString(1, "%" + searchWord + "%");
+			preparedStatement.setString(1, Constant.PERCENT + searchWord + Constant.PERCENT);
 
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
@@ -127,35 +127,35 @@ public class DBController {
 
 			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id"));
-				System.out.print("\t");
+				System.out.print(resultSet.getString(Constant.DB_EMP_ID));
+				System.out.print(Constant.SPACE);
 
-				System.out.print(resultSet.getString("emp_name"));
-				System.out.print("\t");
+				System.out.print(resultSet.getString(Constant.DB_EMP_NAME));
+				System.out.print(Constant.SPACE);
 
-				String genderString = resultSet.getString("gender");
+				String genderString = resultSet.getString(Constant.DB_GENDER);
 				int gender = Integer.parseInt(genderString);
 				if (gender == 0) {
-					System.out.print("回答なし");
+					System.out.print(Constant.GENDER_NO_ANSWER);
 				} else if (gender == 1) {
-					System.out.print("男性");
+					System.out.print(Constant.GENDER_MAN);
 
 				} else if (gender == 2) {
-					System.out.print("女性");
+					System.out.print(Constant.GENDER_WOMAN);
 
 				} else if (gender == 9) {
-					System.out.print("その他");
+					System.out.print(Constant.GENDER_OTHER);
 
 				}
 
-				System.out.print("\t");
-				System.out.print(resultSet.getString("birthday"));
-				System.out.print("\t");
+				System.out.print(Constant.SPACE);
+				System.out.print(resultSet.getString(Constant.DB_GENDER));
+				System.out.print(Constant.SPACE);
 
-				System.out.println(resultSet.getString("dept_name"));
+				System.out.println(resultSet.getString(Constant.DB_DEPT_NAME));
 			}
 
-			System.out.println("");
+			System.out.println(Constant.NONE);
 
 		} finally {
 			// クローズ処理
@@ -204,44 +204,44 @@ public class DBController {
 
 			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString("emp_id"));
-				System.out.print("\t");
+				System.out.print(resultSet.getString(Constant.DB_EMP_ID));
+				System.out.print(Constant.SPACE);
 
-				System.out.print(resultSet.getString("emp_name"));
-				System.out.print("\t");
+				System.out.print(resultSet.getString(Constant.DB_EMP_NAME));
+				System.out.print(Constant.SPACE);
 
-				String genderString = resultSet.getString("gender");
+				String genderString = resultSet.getString(Constant.DB_GENDER);
 				int gender = Integer.parseInt(genderString);
 				if (gender == 0) {
-					System.out.print("回答なし");
+					System.out.print(Constant.GENDER_NO_ANSWER);
 				} else if (gender == 1) {
-					System.out.print("男性");
+					System.out.print(Constant.GENDER_MAN);
 
 				} else if (gender == 2) {
-					System.out.print("女性");
+					System.out.print(Constant.GENDER_WOMAN);
 
 				} else if (gender == 9) {
-					System.out.print("その他");
+					System.out.print(Constant.GENDER_OTHER);
 
 				}
 
-				System.out.print("\t");
-				System.out.print(resultSet.getString("birthday"));
-				System.out.print("\t");
+				System.out.print(Constant.SPACE);
+				System.out.print(resultSet.getString(Constant.DB_BIRTHDAY));
+				System.out.print(Constant.SPACE);
 
-				String deptIdString = resultSet.getString("dept_id");
+				String deptIdString = resultSet.getString(Constant.DB_DEPT_ID);
 				int deptId2 = Integer.parseInt(deptIdString);
 				if (deptId2 == 1) {
-					System.out.println("営業部");
+					System.out.println(Constant.DEPT_SALES);
 				} else if (deptId2 == 2) {
-					System.out.println("経理部");
+					System.out.println(Constant.DEPT_ACCOUNTING);
 				} else if (gender == 3) {
-					System.out.println("総務部");
+					System.out.println(Constant.DEPT_GENERAL);
 
 				}
 			}
 
-			System.out.println("");
+			System.out.println(Constant.NONE);
 		} finally {
 			// クローズ処理
 			DBManager.close(resultSet);
@@ -278,7 +278,7 @@ public class DBController {
 			// 入力値をバインド
 			preparedStatement.setString(1, empName);
 			preparedStatement.setInt(2, Integer.parseInt(gender));
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			SimpleDateFormat sdf = new SimpleDateFormat(Constant.BIRTHDAY);
 			preparedStatement.setObject(3, sdf.parse(birthday), Types.DATE);
 			preparedStatement.setInt(4, Integer.parseInt(deptId));
 
@@ -331,7 +331,7 @@ public class DBController {
 			// 入力値をバインド
 			preparedStatement.setString(1, emp_name);
 			preparedStatement.setInt(2, Integer.parseInt(gender));
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			SimpleDateFormat sdf = new SimpleDateFormat(Constant.BIRTHDAY);
 			preparedStatement.setObject(3, sdf.parse(birthday), Types.DATE);
 			preparedStatement.setInt(4, Integer.parseInt(deptId));
 			preparedStatement.setInt(5, Integer.parseInt(empId));

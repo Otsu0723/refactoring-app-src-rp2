@@ -32,15 +32,15 @@ public class MainSystem {
 
 		do {
 			// メニューの表示
-			System.out.println("=== 社員管理システム ===");
-			System.out.println("1.全件表示");
-			System.out.println("2.社員名検索");
-			System.out.println("3.部署ID検索");
-			System.out.println("4.新規登録");
-			System.out.println("5.更新");
-			System.out.println("6.削除");
-			System.out.println("7.終了");
-			System.out.print("メニュー番号を入力してください：");
+			System.out.println(Constant.MENU);
+			System.out.println(Constant.MENU_FIND_ALL);
+			System.out.println(Constant.MENU_FIND_EMPNAME);
+			System.out.println(Constant.MENU_FIND_DEPTID);
+			System.out.println(Constant.MENU_INSERT);
+			System.out.println(Constant.MENU_UPDATE);
+			System.out.println(Constant.MENU_DELETE);
+			System.out.println(Constant.MENU_END);
+			System.out.println(Constant.MENU_INPUT);
 
 			// メニュー番号の入力
 			String menuNoStr = br.readLine();
