@@ -10,7 +10,11 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+import jp.co.sss.crud.dto.Department;
+import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.util.Constant;
 import jp.co.sss.crud.util.ConstantSQL;
 
@@ -36,6 +40,10 @@ public class DBController {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
+		Employee employee = new Employee();
+		Department department = new Department();
+		List<String> employees = new ArrayList<>();
+
 		try {
 			// DBに接続
 			connection = DBManager.getConnection();
@@ -55,28 +63,24 @@ public class DBController {
 			// レコードを出力
 			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString(Constant.DB_EMP_ID) + Constant.SPACE);
-				System.out.print(resultSet.getString(Constant.DB_EMP_NAME) + Constant.SPACE);
 
-				int gender = Integer.parseInt(resultSet.getString(Constant.DB_GENDER));
-				if (gender == 0) {
-					System.out.print(Constant.GENDER_NO_ANSWER + Constant.SPACE);
-				} else if (gender == 1) {
-					System.out.print(Constant.GENDER_MAN + Constant.SPACE);
+				// DTOへの格納
+				employee = new Employee();
+				department = new Department();
 
-				} else if (gender == 2) {
-					System.out.print(Constant.GENDER_WOMAN + Constant.SPACE);
-
-				} else if (gender == 9) {
-					System.out.print(Constant.GENDER_OTHER + Constant.SPACE);
-
-				}
-
-				System.out.print(resultSet.getString(Constant.DB_BIRTHDAY) + Constant.SPACE);
-				System.out.println(resultSet.getString(Constant.DB_DEPT_NAME));
+				employee.setEmpId(resultSet.getInt(Constant.DB_EMP_ID));
+				employee.setEmpName(resultSet.getString(Constant.DB_EMP_NAME));
+				employee.setGender((Integer.parseInt(resultSet.getString(Constant.DB_GENDER))));
+				employee.setBirthday(resultSet.getString(Constant.DB_BIRTHDAY));
+				department.setDeptName(resultSet.getString(Constant.DB_DEPT_NAME));
+				employee.setDepartment(department);
+				employees.add(employee.toString());
 			}
 
-			System.out.println(Constant.NONE);
+			System.out.println(employees);
+
+			return;
+
 		} finally {
 			// ResultSetをクローズ
 			DBManager.close(resultSet);
@@ -104,6 +108,10 @@ public class DBController {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
+		Employee employee = new Employee();
+		Department department = new Department();
+		List<String> employees = new ArrayList<>();
+
 		try {
 			// DBに接続
 			connection = DBManager.getConnection();
@@ -124,38 +132,26 @@ public class DBController {
 				System.out.println(Constant.FIND_RESULT_NONE);
 				return;
 			}
-
+			// レコードを出力
 			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString(Constant.DB_EMP_ID));
-				System.out.print(Constant.SPACE);
 
-				System.out.print(resultSet.getString(Constant.DB_EMP_NAME));
-				System.out.print(Constant.SPACE);
+				// DTOへの格納
+				employee = new Employee();
+				department = new Department();
 
-				String genderString = resultSet.getString(Constant.DB_GENDER);
-				int gender = Integer.parseInt(genderString);
-				if (gender == 0) {
-					System.out.print(Constant.GENDER_NO_ANSWER);
-				} else if (gender == 1) {
-					System.out.print(Constant.GENDER_MAN);
-
-				} else if (gender == 2) {
-					System.out.print(Constant.GENDER_WOMAN);
-
-				} else if (gender == 9) {
-					System.out.print(Constant.GENDER_OTHER);
-
-				}
-
-				System.out.print(Constant.SPACE);
-				System.out.print(resultSet.getString(Constant.DB_GENDER));
-				System.out.print(Constant.SPACE);
-
-				System.out.println(resultSet.getString(Constant.DB_DEPT_NAME));
+				employee.setEmpId(resultSet.getInt(Constant.DB_EMP_ID));
+				employee.setEmpName(resultSet.getString(Constant.DB_EMP_NAME));
+				employee.setGender((Integer.parseInt(resultSet.getString(Constant.DB_GENDER))));
+				employee.setBirthday(resultSet.getString(Constant.DB_BIRTHDAY));
+				department.setDeptName(resultSet.getString(Constant.DB_DEPT_NAME));
+				employee.setDepartment(department);
+				employees.add(employee.toString());
 			}
 
-			System.out.println(Constant.NONE);
+			System.out.println(employees);
+
+			return;
 
 		} finally {
 			// クローズ処理
@@ -179,6 +175,10 @@ public class DBController {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+
+		Employee employee = new Employee();
+		Department department = new Department();
+		List<String> employees = new ArrayList<>();
 
 		try {
 			// DBに接続
@@ -204,44 +204,22 @@ public class DBController {
 
 			System.out.println(Constant.RESULT_COLUMN);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString(Constant.DB_EMP_ID));
-				System.out.print(Constant.SPACE);
+				// DTOへの格納
+				employee = new Employee();
+				department = new Department();
 
-				System.out.print(resultSet.getString(Constant.DB_EMP_NAME));
-				System.out.print(Constant.SPACE);
-
-				String genderString = resultSet.getString(Constant.DB_GENDER);
-				int gender = Integer.parseInt(genderString);
-				if (gender == 0) {
-					System.out.print(Constant.GENDER_NO_ANSWER);
-				} else if (gender == 1) {
-					System.out.print(Constant.GENDER_MAN);
-
-				} else if (gender == 2) {
-					System.out.print(Constant.GENDER_WOMAN);
-
-				} else if (gender == 9) {
-					System.out.print(Constant.GENDER_OTHER);
-
-				}
-
-				System.out.print(Constant.SPACE);
-				System.out.print(resultSet.getString(Constant.DB_BIRTHDAY));
-				System.out.print(Constant.SPACE);
-
-				String deptIdString = resultSet.getString(Constant.DB_DEPT_ID);
-				int deptId2 = Integer.parseInt(deptIdString);
-				if (deptId2 == 1) {
-					System.out.println(Constant.DEPT_SALES);
-				} else if (deptId2 == 2) {
-					System.out.println(Constant.DEPT_ACCOUNTING);
-				} else if (gender == 3) {
-					System.out.println(Constant.DEPT_GENERAL);
-
-				}
+				employee.setEmpId(resultSet.getInt(Constant.DB_EMP_ID));
+				employee.setEmpName(resultSet.getString(Constant.DB_EMP_NAME));
+				employee.setGender((Integer.parseInt(resultSet.getString(Constant.DB_GENDER))));
+				employee.setBirthday(resultSet.getString(Constant.DB_BIRTHDAY));
+				department.setDeptName(resultSet.getString(Constant.DB_DEPT_NAME));
+				employee.setDepartment(department);
+				employees.add(employee.toString());
 			}
 
-			System.out.println(Constant.NONE);
+			System.out.println(employees);
+			return;
+
 		} finally {
 			// クローズ処理
 			DBManager.close(resultSet);

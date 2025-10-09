@@ -40,7 +40,7 @@ public class MainSystem {
 			System.out.println(Constant.MENU_UPDATE);
 			System.out.println(Constant.MENU_DELETE);
 			System.out.println(Constant.MENU_END);
-			System.out.println(Constant.MENU_INPUT);
+			System.out.print(Constant.MENU_INPUT);
 
 			// メニュー番号の入力
 			String menuNoStr = br.readLine();

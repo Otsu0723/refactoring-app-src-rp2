@@ -11,6 +11,7 @@ public class Constant {
 	}
 
 	public static final String NONE = "";
+	public static final String LINE = "\n";
 	public static final String SPACE = "\t";
 	public static final String PERCENT = "%";
 	public static final String DB_EMP_ID = "emp_id";
