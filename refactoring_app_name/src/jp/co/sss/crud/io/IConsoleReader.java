@@ -29,11 +29,11 @@ public interface IConsoleReader {
 			//			br.close();//IOExceptionを発生させる場合はコメントを外して実行する
 			input = br.readLine();
 			if (!isValid(input)) {
-				String errorMsg = getErrorMsg();
-				throw new IllegalInputException(errorMsg);
+				//String errorMsg = getErrorMsg();
+				throw new IllegalInputException(ConsoleWriter.errorOther());
 			}
 		} catch (IOException e) {
-			//throw new SystemErrorException(MSG_SYSTEM_ERROR, e);
+			throw new SystemErrorException(ConsoleWriter.errorOther(), e);
 		}
 
 		if (isParseInt()) {

@@ -50,4 +50,7 @@ public class Constant {
 	public static final String DELETE_START_EMPID = "削除する社員の社員IDを入力してください：";
 	public static final String DELETE_COMP = "社員情報を削除しました\n";
 	public static final String END_SYSTEM = "システムを終了します。";
+	public static final String MSG_ERROR_MENU = "1～7以外の数字が入力されました。";
+	public static final String MSG_ERROR_INPUT = "入力方法が間違っています。";
+	public static final String MSG_ERROR = "エラーが発生しました。";
 }

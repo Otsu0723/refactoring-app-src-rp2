@@ -94,4 +94,18 @@ public class ConsoleWriter {
 	public static void systemEnd() {
 		System.out.println(Constant.END_SYSTEM);
 	}
+
+	// エラーメッセージ
+	public static void errorMenu() {
+		System.out.println(Constant.MSG_ERROR_MENU);
+	}
+
+	public static void errorInput() {
+		System.out.println(Constant.MSG_ERROR_INPUT);
+	}
+
+	public static String errorOther() {
+		System.out.println(Constant.MSG_ERROR);
+		return null;
+	}
 }

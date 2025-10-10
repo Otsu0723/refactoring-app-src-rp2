@@ -32,7 +32,7 @@ public class MainSystem {
 	 * @throws IllegalInputException 
 	 */
 	public static void main(String[] args) throws IOException, ClassNotFoundException,
-			SQLException, ParseException, SystemErrorException, IllegalInputException {
+			SQLException, ParseException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int menuNo = 0;
 
@@ -52,12 +52,19 @@ public class MainSystem {
 						service.execute();
 					} else {
 						// 8以上の無効な数値を入力した場合、再度メニュー選択メッセージを出力する
+						ConsoleWriter.errorMenu();
 						ConsoleWriter.menu();
 						menuNoStr = br.readLine();
 					}
 				}
-			} catch (Exception e) {
-				// TODO: handle exception
+			} catch (IllegalInputException e) {
+				continue;
+			} catch (NumberFormatException e) {
+				//ConsoleWriter.errorInput();
+				continue;
+			} catch (SystemErrorException e) {
+				e.printStackTrace();
+				break;
 			}
 
 		} while (menuNo != 7);
