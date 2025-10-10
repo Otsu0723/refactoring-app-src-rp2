@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -206,10 +209,60 @@ public class EmployeeDAO implements IEmployeeDAO {
 		}
 	}
 
+	/**
+	 * 社員情報を1件登録
+	 * 
+	 * @param empName 社員名
+	 * @param gender 性別
+	 * @param birthday 生年月日
+	 * @param deptId 部署ID
+	 * @return 
+	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
+	 * @throws SQLException            DB処理でエラーが発生した場合に送出
+	 * @throws IOException             入力処理でエラーが発生した場合に送出
+	 * @throws ParseException 
+	 */
 	@Override
-	public void insert(Employee employee) throws SystemErrorException {
-		// TODO 自動生成されたメソッド・スタブ
+	public List<Employee> insert(Employee employee)
+			throws ClassNotFoundException, SQLException, IOException, ParseException {
 
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		// 登録する値を入力
+		ConsoleWriter.findByEmpName();
+		String empName = br.readLine();
+		ConsoleWriter.insertGender();
+		String gender = br.readLine();
+		ConsoleWriter.insertBirthday();
+		String birthday = br.readLine();
+		ConsoleWriter.insertDeptId();
+		String deptId = br.readLine();
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			// DBに接続
+			connection = DBManager.getConnection();
+
+			// ステートメントを作成
+			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_INSERT);
+
+			// 入力値をバインド
+			preparedStatement.setString(1, empName);
+			preparedStatement.setInt(2, Integer.parseInt(gender));
+			SimpleDateFormat sdf = new SimpleDateFormat(Constant.BIRTHDAY);
+			preparedStatement.setObject(3, sdf.parse(birthday), Types.DATE);
+			preparedStatement.setInt(4, Integer.parseInt(deptId));
+
+			// SQL文を実行
+			preparedStatement.executeUpdate();
+
+			// 登録完了メッセージを出力
+			ConsoleWriter.registComp();
+		} finally {
+			DBManager.close(preparedStatement);
+			DBManager.close(connection);
+		}
+		return null;
 	}
 
 	@Override

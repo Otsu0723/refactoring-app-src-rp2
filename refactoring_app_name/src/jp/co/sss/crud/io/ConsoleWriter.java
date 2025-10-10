@@ -14,31 +14,6 @@ public class ConsoleWriter {
 		return null;
 	}
 
-	// 社員名検索(社員名：)
-	public static void findByEmpName() {
-		System.out.print(Constant.EMPNAME);
-	}
-
-	// 部署名選択
-	public static void findByDeptId() {
-		System.out.print(Constant.FIND_DEPTID);
-	}
-
-	// 性別選択
-	public static void insertGender() {
-		System.out.print(Constant.INSERT_GENDER);
-	}
-
-	// 生年月日入力
-	public static void insertBirthday() {
-		System.out.print(Constant.INSERT_BIRTHDAY);
-	}
-
-	// 部署選択
-	public static void insertDeptId() {
-		System.out.print(Constant.INSERT_DEPTID);
-	}
-
 	// メニュー表示
 	public static void menu() {
 		System.out.println(Constant.MENU);
@@ -64,5 +39,35 @@ public class ConsoleWriter {
 				System.out.println(employee);
 			}
 		}
+	}
+
+	// 社員名検索(社員名：)
+	public static void findByEmpName() {
+		System.out.print(Constant.EMPNAME);
+	}
+
+	// 部署名選択
+	public static void findByDeptId() {
+		System.out.print(Constant.FIND_DEPTID);
+	}
+
+	// 性別選択
+	public static void insertGender() {
+		System.out.print(Constant.INSERT_GENDER);
+	}
+
+	// 生年月日入力
+	public static void insertBirthday() {
+		System.out.print(Constant.INSERT_BIRTHDAY);
+	}
+
+	// 部署選択
+	public static void insertDeptId() {
+		System.out.print(Constant.INSERT_DEPTID);
+	}
+
+	// 登録完了メッセージ
+	public static void registComp() {
+		System.out.println(Constant.REGIST_COMP);
 	}
 }

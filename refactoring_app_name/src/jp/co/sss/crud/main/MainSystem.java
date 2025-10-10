@@ -14,6 +14,7 @@ import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
 import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
+import jp.co.sss.crud.service.EmployeeRegisterService;
 import jp.co.sss.crud.service.IEmployeeService;
 import jp.co.sss.crud.util.Constant;
 
@@ -46,6 +47,7 @@ public class MainSystem {
 		EmployeeAllFindService allFindService = new EmployeeAllFindService();
 		EmployeeFindByEmpNameService findByEmpNameService = new EmployeeFindByEmpNameService();
 		EmployeeFindByDeptIdService findByDeptIdService = new EmployeeFindByDeptIdService();
+		EmployeeRegisterService registerService = new EmployeeRegisterService();
 
 		int menuNo = 0;
 
@@ -76,17 +78,20 @@ public class MainSystem {
 
 			case 4:
 				// 登録する値を入力
-				ConsoleWriter.findByEmpName();
-				String empName = br.readLine();
-				ConsoleWriter.insertGender();
-				String gender = br.readLine();
-				ConsoleWriter.insertBirthday();
-				String birthday = br.readLine();
-				ConsoleWriter.insertDeptId();
-				String deptId = br.readLine();
+				//ConsoleWriter.findByEmpName();
+				//String empName = br.readLine();
+				//ConsoleWriter.insertGender();
+				//String gender = br.readLine();
+				//ConsoleWriter.insertBirthday();
+				//String birthday = br.readLine();
+				//ConsoleWriter.insertDeptId();
+				//String deptId = br.readLine();
 
+				//Employee employee = null;
 				// 登録機能の呼出
-				DBController.insert(empName, gender, birthday, deptId);
+				registerService.execute();
+				//employeeDAO.insert(employee);
+				//DBController.insert(empName, gender, birthday, deptId);
 				break;
 
 			case 5:

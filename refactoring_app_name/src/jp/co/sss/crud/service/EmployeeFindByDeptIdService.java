@@ -14,8 +14,6 @@ import jp.co.sss.crud.io.ConsoleWriter;
 
 public class EmployeeFindByDeptIdService implements IEmployeeService {
 
-	//	private String deptId;
-
 	public void execute()
 			throws SystemErrorException, IllegalInputException, ClassNotFoundException, SQLException, IOException {
 		ConsoleWriter.findByDeptId();

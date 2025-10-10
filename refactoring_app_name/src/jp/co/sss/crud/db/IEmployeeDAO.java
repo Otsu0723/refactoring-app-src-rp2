@@ -2,6 +2,7 @@ package jp.co.sss.crud.db;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import jp.co.sss.crud.dto.Employee;
@@ -52,9 +53,15 @@ public interface IEmployeeDAO {
 	 * <br>社員IDは自動採番機能を用いること
 	 * 
 	 * @param employee
+	 * @return 
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	void insert(Employee employee) throws SystemErrorException;
+	List<Employee> insert(Employee employee)
+			throws SystemErrorException, ClassNotFoundException, SQLException, IOException, ParseException;
 
 	/**
 	 * 社員情報を1件更新する
