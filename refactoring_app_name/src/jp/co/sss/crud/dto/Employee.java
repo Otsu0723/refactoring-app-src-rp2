@@ -85,7 +85,7 @@ public class Employee {
 		}
 
 		return empId + Constant.SPACE + empName + Constant.SPACE + genderStr
-				+ Constant.SPACE + birthday + Constant.SPACE + department.getDeptName() + Constant.LINE;
+				+ Constant.SPACE + birthday + Constant.SPACE + department.getDeptName();
 	}
 
 }

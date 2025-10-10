@@ -29,7 +29,6 @@ public class Constant {
 	public static final String MENU_DELETE = "6.削除";
 	public static final String MENU_END = "7.終了";
 	public static final String MENU_INPUT = "メニュー番号を入力してください：";
-
 	public static final String GENDER_NO_ANSWER = "回答なし";
 	public static final String GENDER_MAN = "男性";
 	public static final String GENDER_WOMAN = "女性";
@@ -40,15 +39,15 @@ public class Constant {
 	public static final String EMPNAME = "社員名:";
 	public static final String BIRTHDAY = "yyyy/MM/dd";
 	public static final String RESULT_COLUMN = "社員ID\t社員名\t性別\t生年月日\t部署名";
-	public static final String FIND_RESULT_NONE = "該当者はいませんでした";
+	public static final String FIND_RESULT_NONE = "該当者はいませんでした\n";
 	public static final String INSERT_GENDER = "性別(0:その他, 1:男性, 2:女性, 9:回答なし):";
 	public static final String INSERT_BIRTHDAY = "生年月日(西暦年/月/日):";
 	public static final String INSERT_DEPTID = "部署ID(1:営業部、2:経理部、3:総務部):";
-	public static final String INSERT_COMP = "社員情報を登録しました";
+	public static final String REGIST_COMP = "社員情報を登録しました\n";
 	public static final String FIND_DEPTID = "部署ID(1:営業部、2:経理部、3:総務部)を入力してください:";
 	public static final String UPDATE_START_EMPID = "更新する社員の社員IDを入力してください：";
-	public static final String UPDATE_COMP_EMPID = "社員情報を更新しました";
+	public static final String UPDATE_COMP_EMPID = "社員情報を更新しました\n";
 	public static final String DELETE_START_EMPID = "削除する社員の社員IDを入力してください：";
-	public static final String DELETE_COMP = "社員情報を削除しました";
+	public static final String DELETE_COMP = "社員情報を削除しました\n";
 	public static final String END_SYSTEM = "システムを終了します。";
 }

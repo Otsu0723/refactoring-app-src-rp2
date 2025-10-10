@@ -1,8 +1,11 @@
 package jp.co.sss.crud.db;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import jp.co.sss.crud.dto.Employee;
+import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 
 public interface IEmployeeDAO {
@@ -11,8 +14,11 @@ public interface IEmployeeDAO {
 	 *
 	 * @return {@code List<Employee>} 全社員エンティティリスト
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalInputException 
 	 */
-	List<Employee> findAll() throws SystemErrorException;
+	List<Employee> findAll() throws SystemErrorException, ClassNotFoundException, SQLException, IllegalInputException;
 
 	/**
 	 * 社員名検索
@@ -20,8 +26,12 @@ public interface IEmployeeDAO {
 	 * @param searchName 検索社員名 
 	 * @return {@code List<Employee>} 検索社員名を含むエンティティリスト
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
+	 * @throws SQLException 
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	List<Employee> findByEmployeeName(String searchName) throws SystemErrorException;
+	List<Employee> findByEmpName(String searchName)
+			throws SystemErrorException, SQLException, IOException, ClassNotFoundException;
 
 	/**
 	 * 部署ID検索
@@ -29,8 +39,12 @@ public interface IEmployeeDAO {
 	 * @param deptId 部署ID
 	 * @return {@code List<Employee>} 検索部署IDを含むエンティティリスト
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	List<Employee> findByDeptId(int deptId) throws SystemErrorException;
+	List<Employee> findByDeptId(String deptId)
+			throws SystemErrorException, ClassNotFoundException, SQLException, IOException;
 
 	/**
 	 * 登録
