@@ -69,8 +69,13 @@ public interface IEmployeeDAO {
 	 * 
 	 * @param employee
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	Integer update(Employee employee) throws SystemErrorException;
+	Integer update(Employee employee)
+			throws SystemErrorException, ClassNotFoundException, SQLException, IOException, ParseException;
 
 	/**
 	 * 社員情報を1件削除する

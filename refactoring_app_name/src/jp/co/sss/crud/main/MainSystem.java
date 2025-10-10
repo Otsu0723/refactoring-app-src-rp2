@@ -15,6 +15,7 @@ import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
 import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
 import jp.co.sss.crud.service.EmployeeRegisterService;
+import jp.co.sss.crud.service.EmployeeUpdateService;
 import jp.co.sss.crud.service.IEmployeeService;
 import jp.co.sss.crud.util.Constant;
 
@@ -48,6 +49,7 @@ public class MainSystem {
 		EmployeeFindByEmpNameService findByEmpNameService = new EmployeeFindByEmpNameService();
 		EmployeeFindByDeptIdService findByDeptIdService = new EmployeeFindByDeptIdService();
 		EmployeeRegisterService registerService = new EmployeeRegisterService();
+		EmployeeUpdateService updateService = new EmployeeUpdateService();
 
 		int menuNo = 0;
 
@@ -77,40 +79,18 @@ public class MainSystem {
 				break;
 
 			case 4:
-				// 登録する値を入力
-				//ConsoleWriter.findByEmpName();
-				//String empName = br.readLine();
-				//ConsoleWriter.insertGender();
-				//String gender = br.readLine();
-				//ConsoleWriter.insertBirthday();
-				//String birthday = br.readLine();
-				//ConsoleWriter.insertDeptId();
-				//String deptId = br.readLine();
-
-				//Employee employee = null;
 				// 登録機能の呼出
 				registerService.execute();
-				//employeeDAO.insert(employee);
-				//DBController.insert(empName, gender, birthday, deptId);
 				break;
 
 			case 5:
-				// 更新する社員IDを入力
-				System.out.print(Constant.UPDATE_START_EMPID);
-
-				// 更新する値を入力する
-				String updateEmpId = br.readLine();
-				Integer.parseInt(updateEmpId);
-
 				// 更新機能の呼出
-				DBController.update(updateEmpId);
-				System.out.println(Constant.UPDATE_COMP_EMPID);
-
+				updateService.execute();
 				break;
 
 			case 6:
 				// 削除する社員IDを入力
-				System.out.print(Constant.DELETE_START_EMPID);
+				ConsoleWriter.delete();
 
 				// 削除機能の呼出
 				DBController.delete();

@@ -70,4 +70,19 @@ public class ConsoleWriter {
 	public static void registComp() {
 		System.out.println(Constant.REGIST_COMP);
 	}
+
+	// 更新する社員情報の選択
+	public static void update() {
+		System.out.print(Constant.UPDATE_START_EMPID);
+	}
+
+	// 更新完了メッセージ
+	public static void updateComp() {
+		System.out.print(Constant.UPDATE_COMP_EMPID);
+	}
+
+	// 削除する社員の社員ID選択メッセージ
+	public static void delete() {
+		System.out.print(Constant.DELETE_START_EMPID);
+	}
 }

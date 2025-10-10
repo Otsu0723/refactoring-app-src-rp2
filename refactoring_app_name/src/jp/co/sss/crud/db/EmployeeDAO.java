@@ -265,9 +265,66 @@ public class EmployeeDAO implements IEmployeeDAO {
 		return null;
 	}
 
+	/**
+	 * 社員情報を1件更新
+	 * 
+	 * @param empId 社員ID
+	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
+	 * @throws SQLException            DB処理でエラーが発生した場合に送出
+	 * @throws IOException             入力処理でエラーが発生した場合に送出
+	 * @throws ParseException 
+	 */
 	@Override
-	public Integer update(Employee employee) throws SystemErrorException {
-		// TODO 自動生成されたメソッド・スタブ
+	public Integer update(Employee employee) throws ClassNotFoundException, SQLException, IOException, ParseException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		// 更新する社員IDを入力
+		ConsoleWriter.update();
+
+		// 更新する値を入力する
+		String updateEmpId = br.readLine();
+		Integer.parseInt(updateEmpId);
+
+		try {
+			// データベースに接続
+			connection = DBManager.getConnection();
+
+			// ステートメントの作成
+			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_UPDATE);
+
+			ConsoleWriter.findByEmpName();
+			String emp_name = br.readLine();
+			// 性別を入力
+			ConsoleWriter.insertGender();
+			String gender = br.readLine();
+			// 誕生日を入力
+			ConsoleWriter.insertBirthday();
+			String birthday = br.readLine();
+			// 部署IDを入力
+			ConsoleWriter.insertDeptId();
+			String deptId = br.readLine();
+
+			// 入力値をバインド
+			preparedStatement.setString(1, emp_name);
+			preparedStatement.setInt(2, Integer.parseInt(gender));
+			SimpleDateFormat sdf = new SimpleDateFormat(Constant.BIRTHDAY);
+			preparedStatement.setObject(3, sdf.parse(birthday), Types.DATE);
+			preparedStatement.setInt(4, Integer.parseInt(deptId));
+			preparedStatement.setInt(5, Integer.parseInt(updateEmpId));
+
+			// SQL文の実行(失敗時は戻り値0)
+			preparedStatement.executeUpdate();
+
+		} finally {
+			// クローズ処理
+			DBManager.close(preparedStatement);
+			// DBとの接続を切断
+			DBManager.close(connection);
+		}
+
+		ConsoleWriter.updateComp();
 		return null;
 	}
 
