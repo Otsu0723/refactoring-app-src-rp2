@@ -8,6 +8,11 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.Constant;
 
+/**
+ * コンソール出力メッセージクラス
+ * 
+ * @author otsuka
+ */
 public class ConsoleWriter {
 
 	public String toString() {
@@ -27,7 +32,6 @@ public class ConsoleWriter {
 		System.out.print(Constant.MENU_INPUT);
 	}
 
-	// 全件表示 findAll
 	public static void showEmployees(List<Employee> employees)
 			throws ClassNotFoundException, SQLException, SystemErrorException, IllegalInputException {
 

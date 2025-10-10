@@ -11,9 +11,7 @@ import jp.co.sss.crud.io.ConsoleWriter;
 
 public class EmployeeAllFindService implements IEmployeeService {
 
-	public void getInstanceByMenuNo(int menuNo) {
-
-	}
+	//public void getInstanceByMenuNo(int menuNo) {}
 
 	public void execute()
 			throws SystemErrorException, IllegalInputException, ClassNotFoundException, SQLException {
