@@ -14,44 +14,46 @@ import jp.co.sss.crud.exception.SystemErrorException;
  */
 public interface IEmployeeService {
 
-	int MENU_SELECT_ALL = 0;
-	int MENU_SEARCH_EMP_NAME = 0;
-	int MENU_SEARCH_DEPT_ID = 0;
-	int MENU_INSERT = 0;
-	int MENU_UPDATE = 0;
-	int MENU_DELETE = 0;
+	int MENU_SELECT_ALL = 1;
+	int MENU_SEARCH_EMP_NAME = 2;
+	int MENU_SEARCH_DEPT_ID = 3;
+	int MENU_INSERT = 4;
+	int MENU_UPDATE = 5;
+	int MENU_DELETE = 6;
 
 	/**
 	 * サービスクラスのインスタンスを生成する
 	 * @param menuNo
 	 * @return IEmployeeServiceを実装したサービスクラス
 	 */
-	//	public static IEmployeeService getInstanceByMenuNo(int menuNo) {
-	//		IEmployeeService newInstance = null;
+	public static IEmployeeService getInstanceByMenuNo(int menuNo) {
+		IEmployeeService newInstance = null;
 
-	/*====menuNoごとにインスタンスを生成する。必要に応じてcaseを追加する====*/
-	//		switch (menuNo) {
-	//		//menu1 全件検索
-	//		case MENU_SELECT_ALL:
-	//			newInstance = new EmployeeAllFindService();
-	//			break;
-	//		case MENU_SEARCH_EMP_NAME:
-	//			newInstance = new EmployeeFindByEmpNameService();
-	//			break;
-	//		case MENU_SEARCH_DEPT_ID:
-	//			newInstance = new EmployeeFindByDeptIdService();
-	//			break;
-	//		case MENU_INSERT:
-	//			newInstance = new EmployeeRegisterService();
-	//			break;
-	//		case MENU_UPDATE:
-	//			newInstance = new EmployeeUpdateService();
-	//			break;
-	//		case MENU_DELETE:
-	//			newInstance = new EmployeeDeleteService();
-	//			break;
-	//
-	//}return newInstance;}
+		/*====menuNoごとにインスタンスを生成する。必要に応じてcaseを追加する====*/
+		switch (menuNo) {
+		//menu1 全件検索
+		case MENU_SELECT_ALL:
+			newInstance = new EmployeeAllFindService();
+			break;
+		case MENU_SEARCH_EMP_NAME:
+			newInstance = new EmployeeFindByEmpNameService();
+			break;
+		case MENU_SEARCH_DEPT_ID:
+			newInstance = new EmployeeFindByDeptIdService();
+			break;
+		case MENU_INSERT:
+			newInstance = new EmployeeRegisterService();
+			break;
+		case MENU_UPDATE:
+			newInstance = new EmployeeUpdateService();
+			break;
+		case MENU_DELETE:
+			newInstance = new EmployeeDeleteService();
+			break;
+
+		}
+		return newInstance;
+	}
 
 	/**
 	 * ビジネスロジックの実行
@@ -64,7 +66,6 @@ public interface IEmployeeService {
 	 * @throws IOException 
 	 * @throws ParseException 
 	 */
-	// abstract変更しない
 	public abstract void execute()
 			throws SystemErrorException, IllegalInputException, ClassNotFoundException, SQLException, IOException,
 			ParseException;

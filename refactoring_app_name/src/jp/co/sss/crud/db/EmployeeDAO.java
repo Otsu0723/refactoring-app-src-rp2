@@ -328,10 +328,54 @@ public class EmployeeDAO implements IEmployeeDAO {
 		return null;
 	}
 
+	/**
+	 * 社員情報を1件削除
+	 *
+	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
+	 * @throws SQLException           DB処理でエラーが発生した場合に送出
+	 * @throws IOException            入力処理でエラーが発生した場合に送出
+	 */
 	@Override
-	public Integer delete(Integer empId) throws SystemErrorException {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+	public Integer delete(Employee employee) throws SystemErrorException {
+		// 削除する社員IDを入力
+		ConsoleWriter.delete();
 
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		try {
+			// データベースに接続
+			connection = DBManager.getConnection();
+			String deleteEmpId = br.readLine();
+
+			// ステートメントの作成
+			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_DELETE);
+
+			// 社員IDをバインド
+			preparedStatement.setInt(1, Integer.parseInt(deleteEmpId));
+
+			// SQL文の実行(失敗時は戻り値0)
+			preparedStatement.executeUpdate();
+
+			System.out.println(Constant.DELETE_COMP);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		finally {
+			// Statementをクローズ
+			try {
+				DBManager.close(preparedStatement);
+				DBManager.close(connection);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			// DBとの接続を切断
+		}
+		return null;
+
+	}
 }

@@ -6,18 +6,16 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import jp.co.sss.crud.db.DBController;
-import jp.co.sss.crud.db.EmployeeDAO;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.service.EmployeeAllFindService;
+import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
 import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
 import jp.co.sss.crud.service.EmployeeRegisterService;
 import jp.co.sss.crud.service.EmployeeUpdateService;
 import jp.co.sss.crud.service.IEmployeeService;
-import jp.co.sss.crud.util.Constant;
 
 /**
  * 社員情報管理システム開始クラス 社員情報管理システムはこのクラスから始まる。<br/>
@@ -27,7 +25,8 @@ import jp.co.sss.crud.util.Constant;
  *
  */
 public class MainSystem {
-	IEmployeeService employeeService;
+
+	public static IEmployeeService employeeService;
 
 	/**
 	 * 社員管理システムを起動
@@ -44,12 +43,13 @@ public class MainSystem {
 			throws IOException, ClassNotFoundException, SQLException, ParseException, SystemErrorException,
 			IllegalInputException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		EmployeeDAO employeeDAO = new EmployeeDAO();
+
 		EmployeeAllFindService allFindService = new EmployeeAllFindService();
 		EmployeeFindByEmpNameService findByEmpNameService = new EmployeeFindByEmpNameService();
 		EmployeeFindByDeptIdService findByDeptIdService = new EmployeeFindByDeptIdService();
 		EmployeeRegisterService registerService = new EmployeeRegisterService();
 		EmployeeUpdateService updateService = new EmployeeUpdateService();
+		EmployeeDeleteService deleteService = new EmployeeDeleteService();
 
 		int menuNo = 0;
 
@@ -60,6 +60,7 @@ public class MainSystem {
 			// メニュー番号の入力
 			String menuNoStr = br.readLine();
 			menuNo = Integer.parseInt(menuNoStr);
+			//employeeService.getInstanceByMenuNo(menuNo);
 
 			// 機能の呼出
 			switch (menuNo) {
@@ -89,15 +90,12 @@ public class MainSystem {
 				break;
 
 			case 6:
-				// 削除する社員IDを入力
-				ConsoleWriter.delete();
-
 				// 削除機能の呼出
-				DBController.delete();
+				deleteService.execute();
 				break;
 
 			}
 		} while (menuNo != 7);
-		System.out.println(Constant.END_SYSTEM);
+		ConsoleWriter.systemEnd();
 	}
 }

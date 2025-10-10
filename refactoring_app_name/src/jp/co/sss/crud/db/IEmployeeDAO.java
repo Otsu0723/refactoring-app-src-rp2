@@ -84,6 +84,6 @@ public interface IEmployeeDAO {
 	 * @param empId 
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
 	 */
-	Integer delete(Integer empId) throws SystemErrorException;
+	Integer delete(Employee employee) throws SystemErrorException;
 
 }

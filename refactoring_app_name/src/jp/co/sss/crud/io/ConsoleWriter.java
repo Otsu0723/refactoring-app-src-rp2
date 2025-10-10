@@ -85,4 +85,9 @@ public class ConsoleWriter {
 	public static void delete() {
 		System.out.print(Constant.DELETE_START_EMPID);
 	}
+
+	// システム終了メッセージ
+	public static void systemEnd() {
+		System.out.println(Constant.END_SYSTEM);
+	}
 }
